@@ -13,5 +13,13 @@
 require 'spec_helper'
 
 describe Student do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @student = Student.new name: 'Example', s_id: 123456, birthdate: '01011969'
+  end
+
+  subject { @student }
+  it { should respond_to :name }
+  it { should respond_to :s_id }
+  it { should respond_to :birthdate }
+
 end

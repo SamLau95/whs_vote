@@ -11,5 +11,5 @@
 #
 
 class Student < ActiveRecord::Base
-  attr_accessible :name, :s_id :birthdate
+  attr_accessible :name, :s_id, :birthdate
 end
