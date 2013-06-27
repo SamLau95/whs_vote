@@ -12,4 +12,6 @@
 
 class Student < ActiveRecord::Base
   attr_accessible :name, :s_id, :birthdate
+
+  validates :name, presence: true
 end

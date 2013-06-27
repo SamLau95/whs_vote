@@ -22,4 +22,11 @@ describe Student do
   it { should respond_to :s_id }
   it { should respond_to :birthdate }
 
+  it { should be_valid }
+
+  describe 'when name is not present' do
+    before { @student.name = ' ' }
+    it { should_not be_valid }
+  end
+
 end
