@@ -1,9 +1,9 @@
 WhsVote::Application.routes.draw do
-  get "student/create"
+  resources :students
 
   root to: 'static_pages#home'
 
-  match '/create',  to: 'student#create'
+  match '/create',  to: 'students#create'
 
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
