@@ -21,7 +21,7 @@ class Student < ActiveRecord::Base
     begin
       Date.strptime(value, '%m/%d/%Y')
     rescue ArgumentError => e
-      record.errors.add(attr, "Invalid birthdate")
+      record.errors.add(attr, "was invalid")
     end
   end
 

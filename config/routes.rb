@@ -3,7 +3,7 @@ WhsVote::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  match '/create',  to: 'students#create'
+  match '/create',  to: 'students#new'
 
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
