@@ -8,7 +8,7 @@ WhsVote::Application.routes.draw do
 
   match '/create',  to: 'students#new'
 
-  match '/signin', to: 'sessions#new'
+  match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
   # The priority is based upon order of creation:

@@ -24,15 +24,12 @@ describe "StudentPages" do
     end
 
     describe 'with valid information' do
-      before do
-        fill_in 'Name', with: 'Student 1'
-        fill_in 'Student ID', with: 123456
-        fill_in 'Grade', with: 12
-        fill_in 'Birthdate', with: '1/1/1995'
-      end
+      before { fill_in_valid_student_info }
+
       it 'should create a student' do
         expect { click_button submit }.to change(Student, :count).by(1)
       end
+      
       describe 'after saving the student' do
         before { click_button submit }
         let(:student) { Student.find_by_s_id(123456) }
