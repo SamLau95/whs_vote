@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626054831) do
+ActiveRecord::Schema.define(:version => 20130628013028) do
 
   create_table "students", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20130626054831) do
     t.string   "birthdate"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "grade"
   end
+
+  add_index "students", ["s_id"], :name => "index_students_on_s_id", :unique => true
 
 end
