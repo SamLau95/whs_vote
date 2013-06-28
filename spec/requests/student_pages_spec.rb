@@ -15,6 +15,12 @@ describe "StudentPages" do
       it 'should not create a student' do
         expect { click_button submit }.not_to change(Student, :count)
       end
+      describe 'after submission' do
+        before { click_button submit }
+
+        it { should have_title('Create Student') }
+        it { should have_content('error') }
+      end
     end
 
     describe 'with valid information' do
@@ -24,8 +30,15 @@ describe "StudentPages" do
         fill_in 'Grade', with: 12
         fill_in 'Birthdate', with: '1/1/1995'
       end
-      it 'should create a user' do
+      it 'should create a student' do
         expect { click_button submit }.to change(Student, :count).by(1)
+      end
+      describe 'after saving the student' do
+        before { click_button submit }
+        let(:student) { Student.find_by_s_id(123456) }
+
+        it { should have_title(student.name) }
+        it { should have_success_message('Student created!') }
       end
     end
   end
