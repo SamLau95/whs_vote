@@ -6,14 +6,14 @@ def valid_signin(student)
   click_button "Sign In"
 end
 
-# def sign_in(student)
-#   visit signin_path
-#   fill_in "Student ID", with: student.s_id
-#   fill_in "Birthdate",  with: student.birthdate
-#   click_button "Sign In"
-#   # Sign in when not using Capybara as well.
-#   cookies[:remember_token] = student.remember_token
-# end
+def sign_in(student)
+  visit signin_path
+  fill_in "Student ID", with: student.s_id
+  fill_in "Birthdate",  with: student.birthdate
+  click_button "Sign In"
+  # Sign in when not using Capybara as well.
+  cookies[:remember_token] = student.remember_token
+end
 
 RSpec::Matchers.define :have_error_message do |message|
   match do |page|

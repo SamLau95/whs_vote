@@ -2,13 +2,14 @@
 #
 # Table name: students
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  s_id       :integer
-#  birthdate  :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  grade      :integer
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  s_id           :integer
+#  birthdate      :string(255)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  grade          :integer
+#  remember_token :string(255)
 #
 
 require 'spec_helper'
@@ -23,6 +24,7 @@ describe Student do
   it { should respond_to :s_id }
   it { should respond_to :grade }
   it { should respond_to :birthdate }
+  it { should respond_to :remember_token }
 
   it { should be_valid }
 
@@ -72,6 +74,11 @@ describe Student do
         @student.should be_valid
       end
     end
+  end
+
+  describe 'remember token' do
+    before { @student.save }
+    its(:remember_token) { should_not be_blank }
   end
 
 end
