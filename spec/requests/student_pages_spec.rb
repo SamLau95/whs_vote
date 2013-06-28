@@ -36,6 +36,7 @@ describe "StudentPages" do
 
         it { should have_title(student.name) }
         it { should have_success_message('Student created!') }
+        it { should have_link 'Sign Out' }
       end
     end
   end

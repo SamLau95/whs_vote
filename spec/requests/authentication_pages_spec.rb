@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Authentication" do
+describe 'Authentication' do
   subject { page }
 
   describe 'signin path' do
@@ -31,6 +31,11 @@ describe "Authentication" do
       it { should have_link 'Vote', href: student_path(student) }
       it { should have_link 'Sign Out', href: signout_path }
       it { should_not have_link 'Sign In', href: signin_path }
+
+      describe 'followed by a signout' do
+        before { click_link 'Sign Out' }
+        it { should have_link 'Sign In' }
+      end
     end
   end
 end
