@@ -43,7 +43,10 @@ describe "StudentPages" do
 
   describe 'show page' do
     let(:student) { FactoryGirl.create :student }
-    before { visit student_path student }
+    before do
+      sign_in student
+      visit student_path student
+    end
 
     it { should have_h1    student.name }
     it { should have_title student.name }
