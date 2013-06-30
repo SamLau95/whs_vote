@@ -28,6 +28,10 @@ describe Student do
   it { should respond_to :remember_token }
   it { should respond_to :admin }
   it { should respond_to :votes }
+  it { should respond_to :voted_candidates }
+  it { should respond_to :voting_for? }
+  it { should respond_to :vote_for! }
+  it { should respond_to :unvote_for! }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -92,5 +96,22 @@ describe Student do
     end
     it { should be_admin }
   end
+
+  describe 'voting' do
+    let(:candidate) { FactoryGirl.create :student }
+    before do
+      student.save
+      student.vote_for! candidate
+    end
+
+    it { should be_voting_for candidate }
+    its(:voted_candidates) { should include candidate }
+
+    describe 'and unvoting' do
+      before { student.unvote_for! candidate }
+      it { should_not be_voting_for candidate }
+      its(:voted_candidates) { should_not include candidate }
+    end
+  end  
 
 end

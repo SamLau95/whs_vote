@@ -33,10 +33,23 @@ class Student < ActiveRecord::Base
   validates :birthdate, presence: true, birthdate: true
 
   has_many :votes, foreign_key: 'voter_id', dependent: :destroy
+  has_many :voted_candidates, through: :votes, source: :cand
 
   before_save :create_remember_token
 
   self.per_page = 50
+
+  def voting_for?(candidate)
+    votes.find_by_cand_id candidate.id
+  end
+
+  def vote_for!(candidate)
+    votes.create! cand_id: candidate.id
+  end
+
+  def unvote_for!(candidate)
+    votes.find_by_cand_id(candidate.id).destroy
+  end
 
   private
     def create_remember_token
