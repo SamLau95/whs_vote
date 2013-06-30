@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130629235824) do
+ActiveRecord::Schema.define(:version => 20130630055247) do
 
   create_table "students", :force => true do |t|
     t.string   "name"
@@ -26,5 +26,16 @@ ActiveRecord::Schema.define(:version => 20130629235824) do
 
   add_index "students", ["remember_token"], :name => "index_students_on_remember_token"
   add_index "students", ["s_id"], :name => "index_students_on_s_id", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "voter_id"
+    t.integer  "cand_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "votes", ["cand_id"], :name => "index_votes_on_cand_id"
+  add_index "votes", ["voter_id", "cand_id"], :name => "index_votes_on_voter_id_and_cand_id", :unique => true
+  add_index "votes", ["voter_id"], :name => "index_votes_on_voter_id"
 
 end
