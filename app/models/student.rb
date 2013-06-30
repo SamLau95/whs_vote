@@ -33,7 +33,7 @@ class Student < ActiveRecord::Base
   validates :birthdate, presence: true, birthdate: true
 
   has_many :votes, foreign_key: 'voter_id', dependent: :destroy
-  has_many :voted_candidates, through: :votes, source: :cand
+  has_many :candidates_voting_for, through: :votes, source: :cand
 
   before_save :create_remember_token
 
