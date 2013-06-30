@@ -4,5 +4,9 @@ FactoryGirl.define do
     sequence(:s_id) { |n| 300000 + n }
     grade 12
     birthdate '1/1/1995'
+
+    factory :admin do
+      admin true
+    end
   end
 end

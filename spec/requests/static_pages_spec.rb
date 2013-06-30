@@ -12,7 +12,7 @@ describe 'StaticPages' do
   describe 'Home page' do
     before { visit root_path }
     let(:heading) { "WHS Vote!" }
-    let(:page_title) { '' }
+    let(:page_title) { 'Home' }
     it_should_behave_like 'all static pages'
   end
 

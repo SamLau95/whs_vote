@@ -1,0 +1,7 @@
+<li>
+  <%= link_to student.s_id, student %>
+  <% if !current_student? student %>
+    | <%= link_to 'delete', student, method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</li>

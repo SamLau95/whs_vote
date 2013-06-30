@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
-  before_filter :signed_in_student,       only: [:show, :index]
-  before_filter :correct_student, only: [:show]
+  before_filter :signed_in_student, only: [:show, :index, :destroy]
+  before_filter :correct_student,   only: [:show]
+  before_filter :admin_student,     only: [:index, :destroy]
 
   def new
     @student = Student.new
@@ -22,12 +23,29 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @students = Student.all
+    @students = Student.paginate(page: params[:page])
   end
 
-  private    
+  def destroy
+    Student.find(params[:id]).destroy
+    flash[:success] = 'Student deleted.'
+    redirect_to students_url
+  end
+
+  private   
+    def signed_in_student
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: 'Please sign in.'
+      end
+    end 
+
     def correct_student
       @student = Student.find(params[:id])
       redirect_to root_path unless current_student? @student
+    end
+
+    def admin_student
+      redirect_to root_path unless current_student.admin?
     end
 end

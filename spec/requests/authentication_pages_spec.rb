@@ -66,5 +66,22 @@ describe 'Authentication' do
         it { should_not have_title wrong_student.name }
       end
     end
+
+    describe 'as non_admin user' do
+      let(:student) { FactoryGirl.create :student }
+      let(:non_admin) { FactoryGirl.create :student }
+
+      before { sign_in non_admin }
+
+      describe 'visiting the index page' do
+        before { visit students_path }
+        it { should have_title 'Home' }
+      end
+
+      describe 'submitting a DELETE request to Students#destroy' do
+        before { delete student_path student }
+        specify { response.should redirect_to root_path }
+      end
+    end
   end
 end

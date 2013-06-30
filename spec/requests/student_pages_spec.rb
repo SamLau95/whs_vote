@@ -42,7 +42,37 @@ describe "StudentPages" do
   end
 
   describe 'index page' do
-    # TODO after admin attribute
+    let(:student) { FactoryGirl.create :student }
+    let(:admin)   { FactoryGirl.create :admin }
+
+    before do
+      sign_in admin
+      visit students_path
+    end
+
+    it { should have_title 'All Students' }
+    it { should have_h1    'All Students' }
+
+    describe 'delete links' do
+      it { should have_link 'delete', href: student_path(Student.first) }  
+
+      it 'should be able to delete another user' do
+        expect { click_link 'delete' }.to change(Student, :count).by(-1)
+      end
+      it { should_not have_link 'delete', href: student_path(student) }
+    end
+
+    describe 'pagination' do
+      before(:all) { 50.times { FactoryGirl.create :student } }
+      after(:all)  { Student.delete_all }
+
+      it { should have_selector('div.pagination') }
+      it 'should list each user' do
+        Student.paginate(page: 1).each do |st|
+          page.should have_selector('li', text: st.s_id.to_s)
+        end
+      end
+    end
   end
 
   describe 'show page' do
