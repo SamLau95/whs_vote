@@ -34,6 +34,9 @@ class Student < ActiveRecord::Base
 
   has_many :votes, foreign_key: 'voter_id', dependent: :destroy
   has_many :candidates_voting_for, through: :votes, source: :cand
+  has_many :reverse_votes, foreign_key: 'cand_id', 
+                           class_name: 'Vote', dependent: :destroy
+  has_many :voters, through: :reverse_votes, source: :voter
 
   before_save :create_remember_token
 

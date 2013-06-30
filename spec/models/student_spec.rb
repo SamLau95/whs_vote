@@ -29,6 +29,8 @@ describe Student do
   it { should respond_to :admin }
   it { should respond_to :votes }
   it { should respond_to :candidates_voting_for }
+  it { should respond_to :reverse_votes }
+  it { should respond_to :voters }
   it { should respond_to :voting_for? }
   it { should respond_to :vote_for! }
   it { should respond_to :unvote_for! }
@@ -106,6 +108,11 @@ describe Student do
 
     it { should be_voting_for candidate }
     its(:candidates_voting_for) { should include candidate }
+
+    describe 'candidate voted for' do
+      subject { candidate }
+      its(:voters) { should include student }
+    end
 
     describe 'and unvoting' do
       before { student.unvote_for! candidate }
