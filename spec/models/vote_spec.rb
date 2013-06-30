@@ -34,4 +34,14 @@ describe Vote do
     its(:voter) { should == voter }
     its(:cand) { should == cand }
   end
+
+  describe 'when voter id is not present' do
+    before { vote.voter_id = nil }
+    it { should_not be_valid }
+  end
+
+  describe 'when cand id is not present' do
+    before { vote.cand_id = nil }
+    it { should_not be_valid }
+  end
 end

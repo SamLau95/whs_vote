@@ -14,4 +14,7 @@ class Vote < ActiveRecord::Base
 
   belongs_to :voter, class_name: 'Student'
   belongs_to :cand,  class_name: 'Student'
+
+  validates :voter_id, presence: true
+  validates :cand_id,  presence: true
 end
