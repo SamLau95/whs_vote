@@ -13,19 +13,26 @@
 #  admin          :boolean          default(FALSE)
 #
 
+class BirthdateValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    begin
+      Date.strptime(value, '%m/%d/%Y')
+    rescue ArgumentError => e
+      record.errors.add(attribute, "was invalid")
+    end
+  end
+end
+
 class Student < ActiveRecord::Base
+  include ActiveModel::Validations
   attr_accessible :name, :s_id, :birthdate, :grade
 
   validates :name,  presence: true, length: { maximum: 50 }
   validates :s_id,  presence: true, uniqueness: true
   validates :grade, presence: true
-  validates_each :birthdate, presence: true do |record, attr, value|
-    begin
-      Date.strptime(value, '%m/%d/%Y')
-    rescue ArgumentError => e
-      record.errors.add(attr, "was invalid")
-    end
-  end
+  validates :birthdate, presence: true, birthdate: true
+
+  has_many :votes, foreign_key: 'voter_id', dependent: :destroy
 
   before_save :create_remember_token
 

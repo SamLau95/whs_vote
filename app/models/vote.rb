@@ -10,4 +10,8 @@
 #
 
 class Vote < ActiveRecord::Base
+  attr_accessible :cand_id
+
+  belongs_to :voter, class_name: 'Student'
+  belongs_to :cand,  class_name: 'Student'
 end
