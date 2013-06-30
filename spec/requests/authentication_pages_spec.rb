@@ -51,7 +51,7 @@ describe 'Authentication' do
 
         describe 'visiting the index page' do
           before { visit students_path }
-          it { should have_title 'Sign In' }
+          it { should have_title 'Home' }
         end
       end
     end
@@ -81,6 +81,50 @@ describe 'Authentication' do
       describe 'submitting a DELETE request to Students#destroy' do
         before { delete student_path student }
         specify { response.should redirect_to root_path }
+      end
+
+      describe 'visiting the student create page' do
+        before { visit create_path }
+        it { should have_title 'Home' }
+      end
+    end
+
+    describe 'as admin user' do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before { sign_in admin }
+      describe 'submitting a DELETE request to itself' do
+        before { delete student_path admin }
+        specify { response.should redirect_to root_path }
+      end
+    end
+
+    describe 'when attempting to visit a protected page' do
+      let(:student) { FactoryGirl.create :student }
+      before do
+        visit student_path student
+        fill_in 'Student ID', with: student.s_id
+        fill_in 'Birthdate', with: student.birthdate
+        click_button 'Sign In'
+      end
+
+      describe 'after signing in' do
+        it 'should render the desired protected page' do
+          page.should have_title student.name
+        end
+      end  
+
+      describe "when signing in again" do
+        before do
+          delete signout_path
+          visit signin_path
+          fill_in 'Student ID', with: student.s_id
+          fill_in 'Birthdate', with: student.birthdate
+          click_button 'Sign In'
+        end
+
+        it "should render the default (profile) page" do
+          page.should have_title student.name
+        end
       end
     end
   end

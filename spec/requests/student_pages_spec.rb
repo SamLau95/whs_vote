@@ -5,7 +5,11 @@ describe "StudentPages" do
   subject { page }
 
   describe 'student creation' do
-    before { visit create_path }
+    let(:admin) { FactoryGirl.create :admin }
+    before do
+      sign_in admin
+      visit create_path
+    end
     let(:submit) { 'Create' }
 
     it { should have_h1 'Create Student' }
@@ -43,7 +47,7 @@ describe "StudentPages" do
 
   describe 'index page' do
     let(:admin)   { FactoryGirl.create :admin }
-    let(:student) { FactoryGirl.create :student }
+    # let(:student) { FactoryGirl.create :student }
 
     before do
       sign_in admin
@@ -53,6 +57,7 @@ describe "StudentPages" do
     it { should have_title 'All Students' }
     it { should have_h1    'All Students' }
 
+    # This test isn't working. I can't figure out why.
     # describe 'delete links' do
     #   it { should have_link admin.s_id.to_s }
     #   it { should have_link student.s_id.to_s }

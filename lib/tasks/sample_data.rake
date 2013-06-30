@@ -10,7 +10,7 @@ namespace :db do
       name = Faker::Name.name
       s_id = 300000 + n
       grade = n / 6 + 7
-      birthdate = '2/2/1996'
+      birthdate = '1/1/2000'
       Student.create!(name: name,
                       s_id: s_id,
                       grade: grade,
