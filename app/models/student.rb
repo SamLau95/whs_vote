@@ -10,6 +10,7 @@
 #  updated_at     :datetime         not null
 #  grade          :integer
 #  remember_token :string(255)
+#  admin          :boolean          default(FALSE)
 #
 
 class Student < ActiveRecord::Base

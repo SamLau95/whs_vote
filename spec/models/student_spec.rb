@@ -10,6 +10,7 @@
 #  updated_at     :datetime         not null
 #  grade          :integer
 #  remember_token :string(255)
+#  admin          :boolean          default(FALSE)
 #
 
 require 'spec_helper'
@@ -25,8 +26,10 @@ describe Student do
   it { should respond_to :grade }
   it { should respond_to :birthdate }
   it { should respond_to :remember_token }
+  it { should respond_to :admin }
 
   it { should be_valid }
+  it { should_not be_admin }
 
   describe 'when name is not present' do
     before { @student.name = ' ' }
@@ -79,6 +82,14 @@ describe Student do
   describe 'remember token' do
     before { @student.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe 'with admin attribute set to true' do
+    before do
+      @student.save!
+      @student.toggle! :admin
+    end
+    it { should be_admin }
   end
 
 end

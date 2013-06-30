@@ -32,13 +32,17 @@ describe "StudentPages" do
       
       describe 'after saving the student' do
         before { click_button submit }
-        let(:student) { Student.find_by_s_id(123456) }
+        let(:student) { Student.find_by_s_id 123456 }
 
         it { should have_title(student.name) }
         it { should have_success_message('Student created!') }
         it { should have_link 'Sign Out' }
       end
     end
+  end
+
+  describe 'index page' do
+    # TODO after admin attribute
   end
 
   describe 'show page' do

@@ -48,6 +48,11 @@ describe 'Authentication' do
           before { visit student_path student }
           it { should have_title 'Sign In' }
         end
+
+        describe 'visiting the index page' do
+          before { visit students_path }
+          it { should have_title 'Sign In' }
+        end
       end
     end
 
