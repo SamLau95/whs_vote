@@ -8,19 +8,12 @@
     </section>
   </aside>
   <div class="span10">
-    <% if current_student?(@student) %>
+    <% if current_student?(@student) || admin? %>
       <% if @student.votes.any? %>
-        <h3>You've already voted!</h3>
-        <p>You submitted your vote 
-            <%= time_ago_in_words(@student.votes.first.created_at) %> ago.</p>
-        <ol class="votes">
-          <%= render @votes %>
-        </ol>
+        <%= render 'vote_record' %>
       <% else %>
         <h3>Go vote!</h3>
       <% end %>
-    <% else %>
-      <h3>Viewing as other user.</h3>
     <% end %>
   </div>
 </div>

@@ -26,6 +26,13 @@ module SessionsHelper
     student == current_student
   end
 
+  def signed_in_student
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: 'Please sign in.'
+    end
+  end 
+
   def sign_out
     self.current_student = nil
     cookies.delete(:remember_token)

@@ -34,14 +34,7 @@ class StudentsController < ApplicationController
     redirect_to students_url
   end
 
-  private   
-    def signed_in_student
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: 'Please sign in.'
-      end
-    end 
-
+  private
     def correct_student_or_admin
       @student = Student.find(params[:id])
       redirect_to root_path unless admin? || current_student?(@student)

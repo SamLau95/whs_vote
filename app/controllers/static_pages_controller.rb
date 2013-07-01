@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @student = current_student if signed_in?
+    redirect_to current_student if signed_in?
   end
 
   def about

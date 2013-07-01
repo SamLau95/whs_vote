@@ -1,10 +1,6 @@
 class VotesController < ApplicationController
-  def new
-  end
+  before_filter :signed_in_student
 
   def create
-  end
-
-  def destroy
   end
 end

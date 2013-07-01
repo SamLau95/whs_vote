@@ -56,7 +56,10 @@ describe 'Authentication' do
       end
 
       describe 'in the vote controller' do
-        
+        describe 'submitting to the create action' do
+          before { post votes_path }
+          specify { response.should redirect_to signin_path }
+        end
       end
     end
 
@@ -79,7 +82,7 @@ describe 'Authentication' do
 
       describe 'visiting the index page' do
         before { visit students_path }
-        it { should have_title 'Home' }
+        it { should have_title non_admin.name }
       end
 
       describe 'submitting a DELETE request to Students#destroy' do
@@ -89,7 +92,7 @@ describe 'Authentication' do
 
       describe 'visiting the student create page' do
         before { visit create_path }
-        it { should have_title 'Home' }
+        it { should have_title non_admin.name }
       end
     end
 
