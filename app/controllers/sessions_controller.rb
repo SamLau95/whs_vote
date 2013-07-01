@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_filter :not_signed_in, only: [:new, :create]
+
   def new
   end
 
@@ -25,5 +27,9 @@ class SessionsController < ApplicationController
       rescue
         false
       end
+    end
+
+    def not_signed_in
+      redirect_to student_path current_student if signed_in?
     end
 end

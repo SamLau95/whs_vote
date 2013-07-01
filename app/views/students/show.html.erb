@@ -8,12 +8,10 @@
     </section>
   </aside>
   <div class="span10">
-    <% if current_student?(@student) || admin? %>
-      <% if @student.votes.any? %>
-        <%= render 'vote_record' %>
-      <% else %>
-        <h3>Go vote!</h3>
-      <% end %>
+    <% if @student.votes.any? %>
+      <%= render 'vote_record' %>
+    <% else %>
+      <h3>Go vote!</h3>
     <% end %>
   </div>
 </div>

@@ -32,8 +32,14 @@ describe 'Authentication' do
       it { should have_link 'Sign Out', href: signout_path }
       it { should_not have_link 'Sign In', href: signin_path }
 
+      describe 'visiting the signin page' do
+        before { visit signin_path }
+        it { should have_title student.name }
+      end
+
       describe 'followed by a signout' do
         before { click_link 'Sign Out' }
+        it { should have_title 'Home' }
         it { should have_link 'Sign In' }
       end
     end
@@ -101,7 +107,7 @@ describe 'Authentication' do
       before { sign_in admin }
 
       it { should have_link 'Students', href: students_path }
-      
+
       describe 'submitting a DELETE request to itself' do
         before { delete student_path admin }
         specify { response.should redirect_to root_path }
@@ -110,12 +116,7 @@ describe 'Authentication' do
 
     describe 'when attempting to visit a protected page' do
       let(:student) { FactoryGirl.create :student }
-      before do
-        visit student_path student
-        fill_in 'Student ID', with: student.s_id
-        fill_in 'Birthdate', with: student.birthdate
-        click_button 'Sign In'
-      end
+      before { sign_in student }
 
       describe 'after signing in' do
         it 'should render the desired protected page' do
@@ -125,11 +126,8 @@ describe 'Authentication' do
 
       describe "when signing in again" do
         before do
-          delete signout_path
-          visit signin_path
-          fill_in 'Student ID', with: student.s_id
-          fill_in 'Birthdate', with: student.birthdate
-          click_button 'Sign In'
+          click_link 'Sign Out'
+          sign_in student
         end
 
         it "should render the default (profile) page" do
