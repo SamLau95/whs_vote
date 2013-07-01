@@ -128,4 +128,19 @@ describe Student do
     end
   end  
 
+  describe 'vote association' do
+    before { student.save }
+    let(:cand) { FactoryGirl.create :candidate }
+    let!(:vote) { student.votes.create cand_id: cand.id }
+
+    it 'should destroy the associated votes' do
+      votes = student.votes.dup
+      student.destroy
+      votes.should_not be_empty
+      votes.each do |vote|
+        Vote.find_by_id(vote.id).should be_nil
+      end
+    end
+  end
+
 end
