@@ -46,6 +46,6 @@ def make_votes
   student = Student.first
   candidates = students[2..7]
   candidates.each do |candidate|
-    student.votes.create! candidate.id
+    student.votes.create! cand_id: candidate.id
   end
 end
