@@ -11,6 +11,7 @@
 #  grade          :integer
 #  remember_token :string(255)
 #  admin          :boolean          default(FALSE)
+#  candidate      :boolean          default(FALSE)
 #
 
 class BirthdateValidator < ActiveModel::EachValidator
@@ -37,6 +38,7 @@ class Student < ActiveRecord::Base
   has_many :reverse_votes, foreign_key: 'cand_id', 
                            class_name: 'Vote', dependent: :destroy
   has_many :voters, through: :reverse_votes, source: :voter
+  has_one  :profile, dependent: :destroy
 
   before_save :create_remember_token
 

@@ -11,6 +11,7 @@
 #  grade          :integer
 #  remember_token :string(255)
 #  admin          :boolean          default(FALSE)
+#  candidate      :boolean          default(FALSE)
 #
 
 require 'spec_helper'
@@ -28,6 +29,7 @@ describe Student do
   it { should respond_to :remember_token }
   it { should respond_to :admin }
   it { should respond_to :candidate }
+  it { should respond_to :profile }
   it { should respond_to :votes }
   it { should respond_to :candidates_voting_for }
   it { should respond_to :reverse_votes }
@@ -98,6 +100,7 @@ describe Student do
       student.toggle! :admin
     end
     it { should be_admin }
+    it { should_not be_candidate }
   end
 
   describe 'with candidate attribute set to true' do
@@ -106,6 +109,7 @@ describe Student do
       student.toggle! :candidate
     end
     it { should be_candidate }
+    it { should_not be_admin }
   end
 
   describe 'voting' do

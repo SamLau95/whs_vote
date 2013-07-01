@@ -14,7 +14,7 @@ require 'spec_helper'
 describe Vote do
   let(:voter) { FactoryGirl.create :student }
   let(:cand) { FactoryGirl.create :student }
-  let(:vote) { voter.votes.build(cand_id: cand.id) }
+  let(:vote) { voter.votes.build cand_id: cand.id }
 
   subject { vote }
 
@@ -24,7 +24,7 @@ describe Vote do
     it 'should not allow access to voter id' do
       expect do
         Vote.new voter_id: voter.id
-      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+      end.to raise_error ActiveModel::MassAssignmentSecurity::Error
     end
   end
 
