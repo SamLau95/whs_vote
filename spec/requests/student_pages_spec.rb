@@ -84,6 +84,11 @@ describe "StudentPages" do
 
   describe 'show page' do
     let(:student) { FactoryGirl.create :student }
+    let!(:c1) { FactoryGirl.create :candidate }
+    let!(:c2) { FactoryGirl.create :candidate }
+    let!(:v1) { student.votes.create cand_id: c1.id }
+    let!(:v2) { student.votes.create cand_id: c2.id }
+
     before do
       sign_in student
       visit student_path student
@@ -91,5 +96,11 @@ describe "StudentPages" do
 
     it { should have_h1    student.name }
     it { should have_title student.name }
+
+    describe 'votes' do
+      it { should have_content 'voted!' }
+      it { should have_content c1.name }
+      it { should have_content c2.name }
+    end
   end
 end

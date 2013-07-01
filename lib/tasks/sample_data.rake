@@ -26,7 +26,7 @@ namespace :db do
     99.times do |n|
       name = Faker::Name.name
       s_id = 300000 + n
-      grade = n / 6 + 7
+      grade = n % 6 + 7
       birthdate = '1/1/2000'
       Student.create!(name: name,
                       s_id: s_id,

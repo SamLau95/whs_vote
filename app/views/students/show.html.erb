@@ -1,10 +1,26 @@
 <% provide(:title, @student.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span2">
     <section>
       <h1>
         <%= @student.name %> | <%= @student.grade %>
       </h1>
     </section>
   </aside>
+  <div class="span10">
+    <% if current_student?(@student) %>
+      <% if @student.votes.any? %>
+        <h3>You've already voted!</h3>
+        <p>You submitted your vote 
+            <%= time_ago_in_words(@student.votes.first.created_at) %> ago.</p>
+        <ol class="votes">
+          <%= render @votes %>
+        </ol>
+      <% else %>
+        <h3>Go vote!</h3>
+      <% end %>
+    <% else %>
+      <h3>Viewing as other user.</h3>
+    <% end %>
+  </div>
 </div>

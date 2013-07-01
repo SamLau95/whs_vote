@@ -10,6 +10,10 @@ module SessionsHelper
     !current_student.nil?
   end
 
+  def admin?
+    signed_in? && @current_student.admin?
+  end
+
   def current_student=(student)
     @current_student = student
   end

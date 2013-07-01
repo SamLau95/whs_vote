@@ -1,8 +1,8 @@
 class StudentsController < ApplicationController
-  before_filter :signed_in_student, only: [:show]
-  before_filter :correct_student,   only: [:show]
-  before_filter :admin_student,     only: [:new, :create, :index, :destroy]
-  before_filter :not_same_student,  only: [:destroy]
+  before_filter :signed_in_student,        only: [:show]
+  before_filter :correct_student_or_admin, only: [:show]
+  before_filter :admin_student,            only: [:new, :create, :index, :destroy]
+  before_filter :not_same_student,         only: [:destroy]
 
   def new
     @student = Student.new
@@ -21,6 +21,7 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    @votes = @student.votes
   end
 
   def index
@@ -41,9 +42,9 @@ class StudentsController < ApplicationController
       end
     end 
 
-    def correct_student
+    def correct_student_or_admin
       @student = Student.find(params[:id])
-      redirect_to root_path unless current_student? @student
+      redirect_to root_path unless admin? || current_student?(@student)
     end
 
     def admin_student
