@@ -46,8 +46,8 @@ describe "StudentPages" do
   end
 
   describe 'index page' do
-    let(:admin)   { FactoryGirl.create :admin }
-    # let(:student) { FactoryGirl.create :student }
+    let(:admin)    { FactoryGirl.create :admin }
+    let!(:student) { FactoryGirl.create :student }
 
     before do
       sign_in admin
@@ -57,17 +57,15 @@ describe "StudentPages" do
     it { should have_title 'All Students' }
     it { should have_h1    'All Students' }
 
-    # This test isn't working. I can't figure out why.
-    # describe 'delete links' do
-    #   it { should have_link admin.s_id.to_s }
-    #   it { should have_link student.s_id.to_s }
-    #   it { should have_link 'delete' }  
+    describe 'delete links' do
+      it { should have_link admin.s_id.to_s }
+      it { should have_link student.s_id.to_s }
+      it { should have_link 'delete', href: student_path(student) }  
 
-    #   it 'should be able to delete another user' do
-    #     expect { click_link 'delete' }.to change(Student, :count).by(-1)
-    #   end
-    #   it { should_not have_link 'delete', href: student_path(student) }
-    # end
+      it 'should be able to delete another user' do
+        expect { click_link 'delete' }.to change(Student, :count).by(-1)
+      end
+    end
 
     describe 'pagination' do
       before(:all) { 50.times { FactoryGirl.create :student } }
