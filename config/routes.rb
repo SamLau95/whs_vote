@@ -1,6 +1,8 @@
 WhsVote::Application.routes.draw do
   resources :students, only: [:index, :show, :new, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :votes,    only: [:new, :create, :destroy]
+  # resources :profiles, only: [:create, :edit, :update]
 
   root to: 'static_pages#home'
   match '/about',   to: 'static_pages#about'

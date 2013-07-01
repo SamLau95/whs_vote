@@ -43,7 +43,7 @@ describe 'Authentication' do
     describe 'for not signed in users' do
       let(:student) { FactoryGirl.create :student }
 
-      describe 'in the Student controller' do
+      describe 'in the student controller' do
         describe 'visiting the profile page' do
           before { visit student_path student }
           it { should have_title 'Sign In' }
@@ -53,6 +53,10 @@ describe 'Authentication' do
           before { visit students_path }
           it { should have_title 'Home' }
         end
+      end
+
+      describe 'in the vote controller' do
+        
       end
     end
 

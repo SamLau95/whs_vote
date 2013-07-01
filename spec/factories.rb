@@ -13,4 +13,9 @@ FactoryGirl.define do
       candidate :true
     end
   end
+
+  factory :vote do
+    content 'Lorem ipsum'
+    student
+  end
 end
