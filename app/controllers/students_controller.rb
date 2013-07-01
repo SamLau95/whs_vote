@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new params[:student]
-    if @student.save
+    if @student.save # successful creation
       sign_in @student
       flash[:success] = 'Student created!'
       redirect_to @student
@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @students = Student.paginate(page: params[:page])
+    @students = Student.paginate page: params[:page]
   end
 
   def destroy

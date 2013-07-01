@@ -6,6 +6,23 @@ namespace :db do
                             grade: 12,
                             birthdate: '9/17/1995')
     admin.toggle! :admin
+
+    cand = Student.create!(name: 'George Washington',
+                           s_id: 100000,
+                           grade: 9,
+                           birthdate: '2/22/1732')
+    cand.toggle! :candidate
+    cand = Student.create!(name: 'Thomas Jefferson',
+                           s_id: 100001,
+                           grade: 10,
+                           birthdate: '4/13/1743')
+    cand.toggle! :candidate
+    cand = Student.create!(name: 'Abraham Lincoln',
+                           s_id: 100002,
+                           grade: 10,
+                           birthdate: '2/12/1809')
+    cand.toggle! :candidate
+    
     99.times do |n|
       name = Faker::Name.name
       s_id = 300000 + n

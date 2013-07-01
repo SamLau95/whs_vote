@@ -27,16 +27,17 @@ describe Student do
   it { should respond_to :birthdate }
   it { should respond_to :remember_token }
   it { should respond_to :admin }
+  it { should respond_to :candidate }
   it { should respond_to :votes }
   it { should respond_to :candidates_voting_for }
   it { should respond_to :reverse_votes }
   it { should respond_to :voters }
   it { should respond_to :voting_for? }
   it { should respond_to :vote_for! }
-  it { should respond_to :unvote_for! }
 
   it { should be_valid }
   it { should_not be_admin }
+  it { should_not be_candidate }
 
   describe 'when name is not present' do
     before { student.name = ' ' }
@@ -99,6 +100,14 @@ describe Student do
     it { should be_admin }
   end
 
+  describe 'with candidate attribute set to true' do
+    before do
+      student.save!
+      student.toggle! :candidate
+    end
+    it { should be_candidate }
+  end
+
   describe 'voting' do
     let(:candidate) { FactoryGirl.create :student }
     before do
@@ -112,12 +121,6 @@ describe Student do
     describe 'candidate voted for' do
       subject { candidate }
       its(:voters) { should include student }
-    end
-
-    describe 'and unvoting' do
-      before { student.unvote_for! candidate }
-      it { should_not be_voting_for candidate }
-      its(:candidates_voting_for) { should_not include candidate }
     end
   end  
 

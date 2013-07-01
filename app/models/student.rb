@@ -50,10 +50,6 @@ class Student < ActiveRecord::Base
     votes.create! cand_id: candidate.id
   end
 
-  def unvote_for!(candidate)
-    votes.find_by_cand_id(candidate.id).destroy
-  end
-
   private
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
