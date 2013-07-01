@@ -1,7 +1,10 @@
 <% provide(:title, 'Home') %>
 
-<% if signed_in? %>
-  <%= render 'vote_form' %>
-<% else %>
-  <%= render 'welcome' %>
-<% end %>
+<div class="center hero-unit">
+  <h1>WHS Vote!</h1>
+  <h2>
+    This is the home page for WHS Vote!
+  </h2>
+  
+  <%= link_to "Sign In", signin_path, class: "btn btn-large btn-primary" %>
+</div>
