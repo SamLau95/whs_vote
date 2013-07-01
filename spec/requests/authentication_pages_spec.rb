@@ -28,7 +28,7 @@ describe 'Authentication' do
       before { valid_signin student }
 
       it { should have_title student.name }
-      it { should have_link 'Profile', href: student_path(student) }
+      it { should have_link student.name, href: student_path(student) }
       it { should have_link 'Sign Out', href: signout_path }
       it { should_not have_link 'Sign In', href: signin_path }
 
@@ -99,6 +99,9 @@ describe 'Authentication' do
     describe 'as admin user' do
       let(:admin) { FactoryGirl.create(:admin) }
       before { sign_in admin }
+
+      it { should have_link 'Students', href: students_path }
+      
       describe 'submitting a DELETE request to itself' do
         before { delete student_path admin }
         specify { response.should redirect_to root_path }

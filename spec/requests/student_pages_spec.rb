@@ -81,24 +81,47 @@ describe "StudentPages" do
   end
 
   describe 'show page' do
-    let(:student) { FactoryGirl.create :student }
+    let!(:student) { FactoryGirl.create :student }
+    let!(:other) { FactoryGirl.create :student }
     let!(:c1) { FactoryGirl.create :candidate }
     let!(:c2) { FactoryGirl.create :candidate }
-    let!(:v1) { student.votes.create cand_id: c1.id }
-    let!(:v2) { student.votes.create cand_id: c2.id }
 
     before do
-      sign_in student
-      visit student_path student
+      student.votes.create cand_id: c1.id
+      other.votes.create cand_id: c2.id
     end
 
-    it { should have_h1    student.name }
-    it { should have_title student.name }
+    describe 'as a voter' do
+      before do
+        sign_in student
+      end
 
-    describe 'votes' do
-      it { should have_content 'voted!' }
-      it { should have_content c1.name }
-      it { should have_content c2.name }
+      describe 'can see own votes' do
+        it { should have_h1    student.name }
+        it { should have_title student.name }
+        it { should have_content 'voted!' }
+        it { should have_content c1.name }
+      end
+
+      describe 'cannot see other votes' do
+        before { visit student_path other }
+        it { should_not have_title other.name }
+        it { should_not have_content c2.name }
+      end
     end
+
+    describe 'as an admin' do
+      let(:admin) { FactoryGirl.create :admin }
+      before do
+        sign_in admin
+        visit student_path student
+      end
+
+      describe 'should be able to see other votes' do
+        it { should have_content 'voted!' }
+        it { should have_content c1.name }
+      end
+    end
+
   end
 end

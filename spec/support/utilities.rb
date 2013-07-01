@@ -39,6 +39,8 @@ RSpec::Matchers.define :have_h1 do |t|
   end
 end
 
+
+
 def fill_in_valid_student_info
   fill_in 'Name', with: 'Student 1'
   fill_in 'Student ID', with: 123456
