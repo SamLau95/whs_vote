@@ -34,8 +34,6 @@ class Student < ActiveRecord::Base
   validates :birthdate, presence: true, birthdate: true
 
   has_many :votes, foreign_key: 'voter_id', dependent: :destroy
-  accepts_nested_attributes_for :votes
-
   has_many :candidates_voting_for, through: :votes, source: :cand
   has_many :reverse_votes, foreign_key: 'cand_id', 
                            class_name: 'Vote', dependent: :destroy

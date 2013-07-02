@@ -20,8 +20,8 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find(params[:id])
-    @votes = @student.votes
+    @student = Student.find params[:id]
+    @votes = @student.votes if @student.votes.any?
   end
 
   def index

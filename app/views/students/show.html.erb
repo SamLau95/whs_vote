@@ -8,10 +8,9 @@
     </section>
   </aside>
   <div class="span10">
-    <% if @student.votes.any? %>
+    <% if @votes %>
       <%= render 'vote_record' %>
-    <% elsif !admin? %>
-      <p>test</p>
+    <% else %>
       <%= render 'vote_form' %>
     <% end %>
   </div>

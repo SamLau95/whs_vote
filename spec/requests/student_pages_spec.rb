@@ -103,7 +103,7 @@ describe "StudentPages" do
         it { should have_content c1.name }
       end
 
-      describe 'cannot see other votes' do
+      describe 'can\'t see other votes' do
         before { visit student_path other }
         it { should_not have_title other.name }
         it { should_not have_content c2.name }
@@ -112,12 +112,10 @@ describe "StudentPages" do
 
     describe 'as an admin' do
       let(:admin) { FactoryGirl.create :admin }
-      before do
-        sign_in admin
-        visit student_path student
-      end
+      before { sign_in admin }
 
-      describe 'should be able to see other votes' do
+      describe 'can see other votes' do
+        before { visit student_path student }
         it { should have_content 'voted!' }
         it { should have_content c1.name }
       end
