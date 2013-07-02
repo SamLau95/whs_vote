@@ -10,8 +10,9 @@
   <div class="span10">
     <% if @student.votes.any? %>
       <%= render 'vote_record' %>
-    <% else %>
-      <h3>Go vote!</h3>
+    <% elsif !admin? %>
+      <p>test</p>
+      <%= render 'vote_form' %>
     <% end %>
   </div>
 </div>
