@@ -148,6 +148,11 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+input[type=radio], input.radio { 
+  float:left; 
+  clear:none; 
+  margin: 2px 5px 0 2px; 
+}
 
 #error_explanation {
   color: #f00;
