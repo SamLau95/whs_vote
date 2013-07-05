@@ -14,7 +14,7 @@
 #  candidate      :boolean          default(FALSE)
 #
 
-class BirthdateValidator < ActiveModel::EachValidator
+class ValidBirthdateValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     begin
       Date.strptime(value, '%m/%d/%Y')
@@ -31,7 +31,7 @@ class Student < ActiveRecord::Base
   validates :name,  presence: true, length: { maximum: 50 }
   validates :s_id,  presence: true, uniqueness: true
   validates :grade, presence: true
-  validates :birthdate, presence: true, birthdate: true
+  validates :birthdate, presence: true, valid_birthdate: true
 
   has_many :votes, foreign_key: 'voter_id', dependent: :destroy
   has_many :candidates_voting_for, through: :votes, source: :cand

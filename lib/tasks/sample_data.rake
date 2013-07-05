@@ -43,9 +43,8 @@ end
 
 def make_votes
   students = Student.all
-  student = Student.first
-  candidates = students[1..7]
-  voters = students[0..6]
+  candidates = students[1..3]
+  voters = [student[0]] + students[4..6]
   voters.each do |voter|
     candidates.each do |candidate|
       voter.votes.create! cand_id: candidate.id
