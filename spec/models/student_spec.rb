@@ -39,7 +39,6 @@ describe Student do
 
   it { should be_valid }
   it { should_not be_admin }
-  it { should_not be_candidate }
 
   describe 'when name is not present' do
     before { student.name = ' ' }
@@ -100,18 +99,12 @@ describe Student do
       student.toggle! :admin
     end
     it { should be_admin }
-    it { should_not be_candidate }
   end
 
-  describe 'with candidate attribute set to true' do
-    before do
-      student.save!
-      student.toggle! :candidate
-    end
-    it { should be_candidate }
-    it { should_not be_admin }
+  describe 'without candidate attribute set' do
+    before { student.save! }
+    its(:candidate) { should == 0 }
   end
-
   describe 'voting' do
     let(:candidate) { FactoryGirl.create :student }
     before do
