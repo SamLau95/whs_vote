@@ -11,7 +11,7 @@
 #  grade          :integer
 #  remember_token :string(255)
 #  admin          :boolean          default(FALSE)
-#  candidate      :boolean          default(FALSE)
+#  category       :integer
 #
 
 require 'spec_helper'
@@ -28,7 +28,7 @@ describe Student do
   it { should respond_to :birthdate }
   it { should respond_to :remember_token }
   it { should respond_to :admin }
-  it { should respond_to :candidate }
+  it { should respond_to :category }
   it { should respond_to :profile }
   it { should respond_to :votes }
   it { should respond_to :candidates_voting_for }
@@ -101,9 +101,9 @@ describe Student do
     it { should be_admin }
   end
 
-  describe 'without candidate attribute set' do
+  describe 'without category attribute set' do
     before { student.save! }
-    its(:candidate) { should == 0 }
+    its(:category) { should == 0 }
   end
   describe 'voting' do
     let(:candidate) { FactoryGirl.create :student }

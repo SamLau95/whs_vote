@@ -11,7 +11,7 @@
 #  grade          :integer
 #  remember_token :string(255)
 #  admin          :boolean          default(FALSE)
-#  candidate      :integer
+#  category       :integer
 #
 
 class ValidBirthdateValidator < ActiveModel::EachValidator
@@ -26,7 +26,7 @@ end
 
 class Student < ActiveRecord::Base
   include ActiveModel::Validations
-  attr_accessible :name, :s_id, :birthdate, :grade, :candidate
+  attr_accessible :name, :s_id, :birthdate, :grade, :category
 
   validates :name,  presence: true, length: { maximum: 50 }
   validates :s_id,  presence: true, uniqueness: true
@@ -40,7 +40,7 @@ class Student < ActiveRecord::Base
   has_many :voters, through: :reverse_votes, source: :voter
   has_one  :profile, dependent: :destroy
 
-  before_save :create_remember_token, :set_default_candidate_category
+  before_save :create_remember_token, :set_default_category
   
   self.per_page = 50
 
@@ -57,8 +57,8 @@ class Student < ActiveRecord::Base
       self.remember_token = SecureRandom.urlsafe_base64
     end
 
-    def set_default_candidate_category
-      self.candidate ||= 0
+    def set_default_category
+      self.category ||= 0
     end
 
 end

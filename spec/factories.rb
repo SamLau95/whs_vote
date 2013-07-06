@@ -10,7 +10,7 @@ FactoryGirl.define do
     end
 
     factory :candidate do
-      candidate :true
+      sequence(:category) { |n| n % 4 + 1 }
     end
   end
 end

@@ -21,7 +21,15 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find params[:id]
-    @votes = @student.votes if @student.votes.any?
+    if @student.votes.any?
+      @votes = @student.votes
+    else
+      @candidates = Student.where 'category > 0'
+      @categories = []
+      @candidates.each do |student|
+        @categories << student.category
+      end
+    end
   end
 
   def index

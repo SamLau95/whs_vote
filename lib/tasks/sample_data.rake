@@ -18,32 +18,32 @@ def make_admin_and_candidates
                          s_id: 100000,
                          grade: 9,
                          birthdate: '2/22/1732',
-                         candidate: 1)
+                         category: 1)
   cand = Student.create!(name: 'Thomas Jefferson',
                          s_id: 100001,
                          grade: 10,
                          birthdate: '4/13/1743',
-                         candidate: 1)
+                         category: 1)
   cand = Student.create!(name: 'Abraham Lincoln',
                          s_id: 100002,
                          grade: 12,
                          birthdate: '2/12/1809',
-                         candidate: 1)
+                         category: 1)
   cand = Student.create!(name: 'Josh Chung',
                          s_id: 100003,
                          grade: 11,
                          birthdate: '1/1/2000',
-                         candidate: 2)
+                         category: 2)
   cand = Student.create!(name: 'Julia Chanco',
                          s_id: 100004,
                          grade: 12,
                          birthdate: '1/1/2000',
-                         candidate: 2)
+                         category: 2)
   cand = Student.create!(name: 'Charlie Shin',
                          s_id: 100005,
                          grade: 10,
                          birthdate: '1/1/2000',
-                         candidate: 2)
+                         category: 2)
 end
 
 def make_students
