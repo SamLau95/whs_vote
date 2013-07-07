@@ -13,7 +13,11 @@ def make_admin_and_candidates
                           grade: 12,
                           birthdate: '9/17/1995')
   admin.toggle! :admin
-
+  admin = Student.create!(name: "Admin User",
+                          s_id: 200000,
+                          grade: 12,
+                          birthdate: '1/1/2000')
+  admin.toggle! :admin
   cand = Student.create!(name: 'George Washington',
                          s_id: 100000,
                          grade: 9,
