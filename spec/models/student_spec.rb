@@ -11,7 +11,8 @@
 #  grade          :integer
 #  remember_token :string(255)
 #  admin          :boolean          default(FALSE)
-#  category       :integer
+#  type           :string(255)
+#  desc           :text
 #
 
 require 'spec_helper'
@@ -28,12 +29,9 @@ describe Student do
   it { should respond_to :birthdate }
   it { should respond_to :remember_token }
   it { should respond_to :admin }
-  it { should respond_to :category }
-  it { should respond_to :profile }
+  it { should respond_to :type }
   it { should respond_to :votes }
   it { should respond_to :candidates_voting_for }
-  it { should respond_to :reverse_votes }
-  it { should respond_to :voters }
   it { should respond_to :voting_for? }
   it { should respond_to :vote_for! }
 
@@ -101,12 +99,8 @@ describe Student do
     it { should be_admin }
   end
 
-  describe 'without category attribute set' do
-    before { student.save! }
-    its(:category) { should == 0 }
-  end
   describe 'voting' do
-    let(:candidate) { FactoryGirl.create :student }
+    let(:candidate) { FactoryGirl.create :candidate }
     before do
       student.save
       student.vote_for! candidate
@@ -114,17 +108,12 @@ describe Student do
 
     it { should be_voting_for candidate }
     its(:candidates_voting_for) { should include candidate }
-
-    describe 'candidate voted for' do
-      subject { candidate }
-      its(:voters) { should include student }
-    end
   end  
 
   describe 'vote association' do
     before { student.save }
     let(:cand) { FactoryGirl.create :candidate }
-    let!(:vote) { student.votes.create cand_id: cand.id }
+    let!(:vote) { student.vote_for! cand }
 
     it 'should destroy the associated votes' do
       votes = student.votes.dup

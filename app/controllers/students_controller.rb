@@ -24,11 +24,7 @@ class StudentsController < ApplicationController
     if @student.votes.any?
       @votes = @student.votes
     else
-      @candidates = Student.where 'category > 0'
-      @categories = []
-      @candidates.each do |student|
-        @categories << student.category
-      end
+      
     end
   end
 

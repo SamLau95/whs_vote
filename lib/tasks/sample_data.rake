@@ -18,36 +18,30 @@ def make_admin_and_candidates
                           grade: 12,
                           birthdate: '1/1/2000')
   admin.toggle! :admin
-  cand = Student.create!(name: 'George Washington',
-                         s_id: 100000,
-                         grade: 9,
-                         birthdate: '2/22/1732',
-                         category: 1)
-  cand = Student.create!(name: 'Thomas Jefferson',
-                         s_id: 100001,
-                         grade: 10,
-                         birthdate: '4/13/1743',
-                         category: 1)
-  cand = Student.create!(name: 'Abraham Lincoln',
-                         s_id: 100002,
-                         grade: 12,
-                         birthdate: '2/12/1809',
-                         category: 1)
-  cand = Student.create!(name: 'Josh Chung',
-                         s_id: 100003,
-                         grade: 11,
-                         birthdate: '1/1/2000',
-                         category: 2)
-  cand = Student.create!(name: 'Julia Chanco',
-                         s_id: 100004,
-                         grade: 12,
-                         birthdate: '1/1/2000',
-                         category: 2)
-  cand = Student.create!(name: 'Charlie Shin',
-                         s_id: 100005,
-                         grade: 10,
-                         birthdate: '1/1/2000',
-                         category: 2)
+  Candidate.create!(name: 'George Washington',
+                    s_id: 100000,
+                    grade: 9,
+                    birthdate: '2/22/1732')
+  Candidate.create!(name: 'Thomas Jefferson',
+                    s_id: 100001,
+                    grade: 10,
+                    birthdate: '4/13/1743')
+  Candidate.create!(name: 'Abraham Lincoln',
+                    s_id: 100002,
+                    grade: 12,
+                    birthdate: '2/12/1809')
+  Candidate.create!(name: 'Josh Chung',
+                    s_id: 100003,
+                    grade: 11,
+                    birthdate: '1/1/2000')
+  Candidate.create!(name: 'Julia Chanco',
+                    s_id: 100004,
+                    grade: 12,
+                    birthdate: '1/1/2000')
+  Candidate.create!(name: 'Charlie Shin',
+                    s_id: 100005,
+                    grade: 10,
+                    birthdate: '1/1/2000')
 end
 
 def make_students
@@ -65,7 +59,7 @@ end
 
 def make_votes
   students = Student.all
-  candidates = students[1..3]
+  candidates = Candidate.all
   voters = [students[0]] + students[4..6]
   voters.each do |voter|
     candidates.each do |candidate|

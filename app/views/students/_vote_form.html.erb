@@ -1,13 +1,8 @@
 <h3>Please select your candidates and click 'Vote!'</h3>
-<%= form_tag votes_path do %>  
-  <%= radio_button_tag :cand, 2 %>
-  <%= label_tag :cand_2, 'George Washington' %>
+<%= form_tag votes_path do %>
+  <%= hidden_field_tag :student_id, @student.id %>
+
   
-  <%= radio_button_tag :cand, 3 %>
-  <%= label_tag :cand_3, 'Thomas Jefferson' %>
-  
-  <%= radio_button_tag :cand, 4 %>
-  <%= label_tag :cand_4, 'Abraham Lincoln' %>
   
   <%= submit_tag "Vote!", class: "btn btn-large btn-primary" %>
 <% end %>

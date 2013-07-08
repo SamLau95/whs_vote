@@ -8,9 +8,12 @@ FactoryGirl.define do
     factory :admin do
       admin true
     end
+  end
 
-    factory :candidate do
-      sequence(:category) { |n| n % 4 + 1 }
-    end
+  factory :candidate do
+    sequence(:name) { |n| "Candidate #{n}" }
+    sequence(:s_id) { |n| 200000 + n }
+    grade 12
+    birthdate '1/1/1995'
   end
 end

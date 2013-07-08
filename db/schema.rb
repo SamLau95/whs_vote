@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706004457) do
+ActiveRecord::Schema.define(:version => 20130708192828) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "student_id"
@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(:version => 20130706004457) do
     t.integer  "grade"
     t.string   "remember_token"
     t.boolean  "admin",          :default => false
-    t.integer  "category"
+    t.string   "type"
+    t.text     "desc"
   end
 
   add_index "students", ["remember_token"], :name => "index_students_on_remember_token"

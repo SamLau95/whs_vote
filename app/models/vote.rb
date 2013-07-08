@@ -13,7 +13,7 @@ class Vote < ActiveRecord::Base
   attr_accessible :cand_id
 
   belongs_to :voter, class_name: 'Student'
-  belongs_to :cand,  class_name: 'Student'
+  belongs_to :cand,  class_name: 'Candidate'
 
   validates :voter_id, presence: true
   validates :cand_id,  presence: true

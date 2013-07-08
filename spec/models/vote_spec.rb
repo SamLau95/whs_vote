@@ -13,7 +13,7 @@ require 'spec_helper'
 
 describe Vote do
   let(:voter) { FactoryGirl.create :student }
-  let(:cand) { FactoryGirl.create :student }
+  let(:cand) { FactoryGirl.create :candidate }
   let(:vote) { voter.votes.build cand_id: cand.id }
 
   subject { vote }
