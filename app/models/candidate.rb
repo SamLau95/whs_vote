@@ -20,4 +20,5 @@ class Candidate < Student
                            class_name: 'Vote', dependent: :destroy
   has_many :voters, through: :reverse_votes, source: :voter
 
+  
 end

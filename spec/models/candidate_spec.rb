@@ -17,6 +17,7 @@
 
 require 'spec_helper'
 
+# Candidates can vote, be voted for, and have a description/profile page
 describe Candidate do
   let(:cand) { FactoryGirl.create :candidate }
   subject { cand }

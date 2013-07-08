@@ -15,6 +15,7 @@
 #  desc           :text
 #
 
+# Makes sure birthdates are valid using Date#strptime
 class ValidBirthdateValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     begin
@@ -29,18 +30,19 @@ class Student < ActiveRecord::Base
   include ActiveModel::Validations
   attr_accessible :name, :s_id, :birthdate, :grade, :category
 
-  validates :name,  presence: true, length: { maximum: 50 }
-  validates :s_id,  presence: true, uniqueness: true
-  validates :grade, presence: true
+  validates :name,      presence: true, length: { maximum: 50 }
+  validates :s_id,      presence: true, uniqueness: true
+  validates :grade,     presence: true
   validates :birthdate, presence: true, valid_birthdate: true
 
+  # A student can only vote for candidates and can't be voted for
   has_many :votes, foreign_key: 'voter_id', dependent: :destroy
   has_many :candidates_voting_for, through: :votes, source: :cand
 
   before_save :create_remember_token
   
+  # per_page students shown for every page using will_paginate
   self.per_page = 50
-  @GRADECATEGORYLIMIT = 1000
 
   def voting_for?(candidate)
     votes.find_by_cand_id candidate.id
@@ -50,7 +52,18 @@ class Student < ActiveRecord::Base
     votes.create! cand_id: candidate.id
   end
 
+  def self.inherited(child)
+    child.instance_eval do
+      alias :original_model_name :model_name
+      def model_name
+        Student.model_name
+      end
+    end
+    super
+  end
+
   private
+    # Used to keep track of logged in user
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
