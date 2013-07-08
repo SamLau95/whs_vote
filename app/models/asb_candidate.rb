@@ -1,0 +1,2 @@
+class AsbCandidate < Candidate
+end

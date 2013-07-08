@@ -1,0 +1,2 @@
+class GradeCandidate < Candidate
+end
