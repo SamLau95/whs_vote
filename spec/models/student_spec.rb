@@ -101,7 +101,8 @@ describe Student do
   end
 
   describe 'voting' do
-    let(:candidate) { FactoryGirl.create :candidate }
+    let(:category) { FactoryGirl.create :category }
+    let(:candidate) { FactoryGirl.create :candidate, category: category }
     before do
       student.save
       student.vote_for! candidate
@@ -113,7 +114,8 @@ describe Student do
 
   describe 'vote association' do
     before { student.save }
-    let(:cand) { FactoryGirl.create :candidate }
+    let(:category) { FactoryGirl.create :category }
+    let(:cand) { FactoryGirl.create :candidate, category: category }
     let!(:vote) { student.vote_for! cand }
 
     it 'should destroy the associated votes' do

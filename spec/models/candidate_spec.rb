@@ -19,12 +19,22 @@
 require 'spec_helper'
 
 describe Candidate do
-  let(:cand) { FactoryGirl.create :candidate }
+  let(:category) { FactoryGirl.create :category }
+  let(:cand) { FactoryGirl.create :candidate, category: category }
   subject { cand }
 
   it { should respond_to :desc }
   it { should respond_to :reverse_votes }
   it { should respond_to :voters }
   it { should respond_to :category }
+  it { should respond_to :category_id }
+
   it { should be_valid }
+
+  its(:category_id) { should == category.id }
+
+  describe 'without category id' do
+    before { cand.category_id = nil }
+    it { should_not be_valid }
+  end
 end

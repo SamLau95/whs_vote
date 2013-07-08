@@ -22,30 +22,39 @@ def make_admins
 end
 
 def make_candidates
+  us_cat =  Category.create! name: 'USA President'
+  asb_cat = Category.create! name: 'ASB President'
+
   GradeCandidate.create!(name: 'George Washington',
                     s_id: 100000,
                     grade: 9,
-                    birthdate: '2/22/1732')
+                    birthdate: '2/22/1732',
+                    category_id: us_cat.id)
   GradeCandidate.create!(name: 'Thomas Jefferson',
                     s_id: 100001,
                     grade: 10,
-                    birthdate: '4/13/1743')
+                    birthdate: '4/13/1743',
+                    category_id: us_cat.id)
   GradeCandidate.create!(name: 'Abraham Lincoln',
                     s_id: 100002,
                     grade: 12,
-                    birthdate: '2/12/1809')
+                    birthdate: '2/12/1809',
+                    category_id: us_cat.id)
   AsbCandidate.create!(name: 'Josh Chung',
                     s_id: 100003,
                     grade: 11,
-                    birthdate: '1/1/2000')
+                    birthdate: '1/1/2000',
+                    category_id: asb_cat.id)
   AsbCandidate.create!(name: 'Julia Chanco',
                     s_id: 100004,
                     grade: 12,
-                    birthdate: '1/1/2000')
+                    birthdate: '1/1/2000',
+                    category_id: asb_cat.id)
   AsbCandidate.create!(name: 'Charlie Shin',
                     s_id: 100005,
                     grade: 10,
-                    birthdate: '1/1/2000')
+                    birthdate: '1/1/2000',
+                    category_id: asb_cat.id)
 end
 
 def make_students
