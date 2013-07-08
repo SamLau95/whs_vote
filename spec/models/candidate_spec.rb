@@ -13,18 +13,18 @@
 #  admin          :boolean          default(FALSE)
 #  type           :string(255)
 #  desc           :text
+#  category_id    :integer
 #
 
 require 'spec_helper'
 
-# Candidates can vote, be voted for, and have a description/profile page
 describe Candidate do
   let(:cand) { FactoryGirl.create :candidate }
   subject { cand }
 
-  its(:type) { should eq 'Candidate' }
   it { should respond_to :desc }
   it { should respond_to :reverse_votes }
   it { should respond_to :voters }
+  it { should respond_to :category }
   it { should be_valid }
 end

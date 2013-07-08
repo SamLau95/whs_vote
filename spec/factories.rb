@@ -16,4 +16,8 @@ FactoryGirl.define do
     grade 12
     birthdate '1/1/1995'
   end
+
+  factory :category do
+    sequence(:name) { |n| "Category #{n}" }
+  end
 end

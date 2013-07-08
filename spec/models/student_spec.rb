@@ -13,6 +13,7 @@
 #  admin          :boolean          default(FALSE)
 #  type           :string(255)
 #  desc           :text
+#  category_id    :integer
 #
 
 require 'spec_helper'

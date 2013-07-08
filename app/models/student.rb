@@ -13,6 +13,7 @@
 #  admin          :boolean          default(FALSE)
 #  type           :string(255)
 #  desc           :text
+#  category_id    :integer
 #
 
 # Makes sure birthdates are valid using Date#strptime
@@ -28,7 +29,7 @@ end
 
 class Student < ActiveRecord::Base
   include ActiveModel::Validations
-  attr_accessible :name, :s_id, :birthdate, :grade, :category
+  attr_accessible :name, :s_id, :birthdate, :grade
 
   validates :name,      presence: true, length: { maximum: 50 }
   validates :s_id,      presence: true, uniqueness: true
@@ -52,6 +53,7 @@ class Student < ActiveRecord::Base
     votes.create! cand_id: candidate.id
   end
 
+  # Allow child classes to use parent routes
   def self.inherited(child)
     child.instance_eval do
       alias :original_model_name :model_name
