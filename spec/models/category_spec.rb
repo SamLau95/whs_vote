@@ -24,4 +24,16 @@ describe Category do
     before { category.name = nil }
     it { should_not be_valid }
   end
+
+  describe 'Grade Category' do
+  	let(:g_category) { GradeCategory.create name: '12th grade', grade: 12 }
+  	subject { g_category }
+
+  	it { should be_valid }
+
+  	describe 'without grade' do
+  		before { g_category.grade = nil }
+  		it { should_not be_valid }
+  	end
+  end
 end

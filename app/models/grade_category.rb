@@ -11,4 +11,6 @@
 #
 
 class GradeCategory < Category
+	attr_accessible :grade
+	validates :grade, presence: true
 end
