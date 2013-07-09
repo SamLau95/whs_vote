@@ -32,9 +32,4 @@ describe Candidate do
   it { should be_valid }
 
   its(:category_id) { should == category.id }
-
-  describe 'without category id' do
-    before { cand.category_id = nil }
-    it { should_not be_valid }
-  end
 end

@@ -24,6 +24,4 @@ class Candidate < Student
                            class_name: 'Vote', dependent: :destroy
   has_many :voters, through: :reverse_votes, source: :voter
   belongs_to :category
-
-  validates :category_id, presence: true
 end
