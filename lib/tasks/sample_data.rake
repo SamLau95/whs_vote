@@ -23,7 +23,7 @@ end
 
 def make_candidates
   asb_cat =  AsbCategory.create! name: 'ASB President'
-  us_cat = GradeCategory.create! name: 'US President'
+  us_cat = GradeCategory.create! name: 'US President', grade: 12
 
   Candidate.create!(name: 'George Washington',
                     s_id: 100000,
@@ -72,11 +72,11 @@ end
 
 def make_votes
   students = Student.all
-  candidates = Candidate.all
+  categories = Category.all
   voters = [students[0]] + students[7..10]
   voters.each do |voter|
-    candidates.each do |candidate|
-      voter.vote_for! candidate
+    categories.each do |category|
+      voter.vote_for! category.candidates.first
     end
   end
 end
