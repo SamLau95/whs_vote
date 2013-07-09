@@ -3,14 +3,16 @@ class VotesController < ApplicationController
 
   def create
     @student = Student.find_by_id params[:student_id]
-    voted = false
+
     Category.all.each do |category|
-      if params[category.name]
-        @student.votes.create! params[category.name].to_i
-        voted = true
-      end
+      @student.votes.create! cand_id: params[category.name].to_i if params[category.name]
     end
-    flash[:error] = "You didn't select any candidates" unless voted
+
+    if @student.votes.any?
+      flash[:success] = "Thanks for voting!"
+    else
+      flash[:error] = "You didn't select any candidates"
+    end
     redirect_to @student
   end
 end
