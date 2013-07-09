@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
     if @student.votes.any?
       @votes = @student.votes
     else
-      @categories = AsbCategory.all + GradeGategory.where "grade = #{student.grade}"
+      @categories = AsbCategory.all + GradeCategory.where("grade = #{@student.grade}")
     end
   end
 
