@@ -15,6 +15,6 @@ class GradeCategory < Category
 	validates :grade, presence: true
 
 	def self.categories_for(student)
-		where "grade = #{student.grade}" || []
+		where "grade = %s" % student.grade
 	end
 end

@@ -71,12 +71,9 @@ def make_students
 end
 
 def make_votes
-  students = Student.all
+  voter = Student.first
   categories = Category.all
-  voters = [students[0]] + students[7..10]
-  voters.each do |voter|
-    categories.each do |category|
-      voter.vote_for! category.candidates.first
-    end
+  categories.each do |category|
+    voter.vote_for! category.candidates.first
   end
 end

@@ -2,7 +2,13 @@
 <%= form_tag votes_path do %>
   <%= hidden_field_tag :student_id, @student.id %>
 
-	
+	<% @categories.each do |category| %>
+		<h4><%= category.name %></h4>
+		<% category.candidates.each do |candidate| %>
+			<%= radio_button_tag category.name, candidate.id %>
+			<%= label_tag "#{category.name}_#{candidate.id}".to_sym, candidate.name %>
+		<% end %>
+	<% end %>
   
   <%= submit_tag "Vote!", class: "btn btn-large btn-primary" %>
 <% end %>
