@@ -14,5 +14,8 @@
 /log/*.log
 /tmp
 
+# Ignore compiled assets
+/public/assets
+
 # Ignore coverage
 coverage
