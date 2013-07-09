@@ -6,7 +6,7 @@ describe "VotePages" do
   let(:student) { FactoryGirl.create :student }
   before { sign_in student }
 
-  pending 'vote creation' do
+  describe 'vote creation' do
     describe 'with no choices' do
       it 'should not create any votes' do
         expect { click_button 'Vote!' }.not_to change(Vote, :count)

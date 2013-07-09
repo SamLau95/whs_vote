@@ -25,7 +25,6 @@ class StudentsController < ApplicationController
       @votes = @student.votes
     else
       @categories = AsbCategory.categories_for(@student) + GradeCategory.categories_for(@student)
-      @vote_ids = []
     end
   end
 
