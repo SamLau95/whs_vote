@@ -11,6 +11,7 @@
     <% if @votes %>
       <%= render 'vote_record' %>
     <% else %>
+      <%= @categories %>
       <%= render 'vote_form' %>
     <% end %>
   </div>

@@ -13,4 +13,8 @@
 class GradeCategory < Category
 	attr_accessible :grade
 	validates :grade, presence: true
+
+	def self.categories_for(student)
+		where "grade = #{student.grade}" || []
+	end
 end

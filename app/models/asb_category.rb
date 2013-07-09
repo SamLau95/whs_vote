@@ -11,4 +11,7 @@
 #
 
 class AsbCategory < Category
+	def self.categories_for(student)
+		(all unless student.grade < 9) || []
+	end
 end
