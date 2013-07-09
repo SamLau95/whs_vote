@@ -10,10 +10,8 @@
 #  grade      :integer
 #
 
-class Category < ActiveRecord::Base
-  attr_accessible :name
+require 'spec_helper'
 
-  has_many :candidates
-
-  validates :name, presence: true
+describe AsbCategory do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
