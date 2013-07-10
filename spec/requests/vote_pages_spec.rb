@@ -58,9 +58,10 @@ describe "VotePages" do
       before do 
         sign_in student
         choose asb_cand.name
+        choose sen_grade_cand.name
       end
       it 'should create votes' do
-        expect { click_button 'Vote!' }.to change(Vote, :count).by(1)
+        expect { click_button 'Vote!' }.to change(Vote, :count).by(2)
       end
     end
   end
