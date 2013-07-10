@@ -24,7 +24,10 @@ class StudentsController < ApplicationController
     if @student.votes.any?
       @votes = @student.votes
     else
-      @categories = AsbCategory.categories_for(@student) + GradeCategory.categories_for(@student)
+      @categories = []
+      Category.subclasses.each do |category|
+        @categories.concat category.categories_for @student
+      end
     end
   end
 

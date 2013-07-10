@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "VotePages" do
+  
   subject { page }
 
   let(:student)           { FactoryGirl.create :student, grade: 12 }

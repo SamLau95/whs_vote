@@ -16,4 +16,8 @@ class Category < ActiveRecord::Base
   has_many :candidates
 
   validates :name, presence: true
+
+  def self.categories_for(student)
+  	raise "Not implemented"
+  end
 end
