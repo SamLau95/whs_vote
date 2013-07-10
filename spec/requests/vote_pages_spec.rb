@@ -53,5 +53,15 @@ describe "VotePages" do
         it { should have_error_message 'didn\'t select any candidates' }
       end
     end
+
+    describe 'with choices' do
+      before do 
+        sign_in student
+        choose asb_cand.name
+      end
+      it 'should create votes' do
+        expect { click_button 'Vote!' }.to change(Vote, :count).by(1)
+      end
+    end
   end
 end
