@@ -12,6 +12,7 @@ bundle exec rake db:migrate
 bundle exec rake db:populate
 ```
 You may then start the server by running
+
 ```rails server```
 
 To run the test suite:
@@ -19,5 +20,8 @@ To run the test suite:
 bundle exec db:test:prepare
 bundle exec rspec
 ```
-    
+
+Candidate categories are implemented in the Category class. To add your own categories inherit from Category and override the ```self.categories_for``` method.
+
+
 Questions/Comments? Send me an email at samlau95@gmail.com
