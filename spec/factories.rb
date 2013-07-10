@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :student do
     sequence(:name) { |n| "Student #{n}" }
-    sequence(:s_id) { |n| 300000 + n }
+    sequence(:s_id, 300001) { |n| n }
     grade 12
     birthdate '1/1/1995'
 
@@ -12,7 +12,7 @@ FactoryGirl.define do
 
   factory :candidate do
     sequence(:name) { |n| "Candidate #{n}" }
-    sequence(:s_id) { |n| 200000 + n }
+    sequence(:s_id, 200001) { |n| n }
     grade 12
     birthdate '1/1/1995'
     category
@@ -20,5 +20,14 @@ FactoryGirl.define do
 
   factory :category do
     sequence(:name) { |n| "Category #{n}" }
+  end
+
+  factory :asb_category do
+    sequence(:name) { |n| "Category #{n}" }
+  end
+
+  factory :grade_category do
+    sequence(:name) { |n| "Category #{n}" }
+    sequence(:grade) { |n| n % 6 + 7 }
   end
 end

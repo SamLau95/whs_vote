@@ -23,23 +23,23 @@ end
 
 def make_candidates
   asb_cat =  AsbCategory.create! name: 'ASB President'
-  us_cat = GradeCategory.create! name: 'US President', grade: 12
+  senior_cat = GradeCategory.create! name: 'Senior Class President', grade: 12
 
-  Candidate.create!(name: 'George Washington',
+  Candidate.create!(name: 'Steve Hwang',
                     s_id: 100000,
                     grade: 12,
-                    birthdate: '2/22/1732',
-                    category_id: us_cat.id)
-  Candidate.create!(name: 'Thomas Jefferson',
+                    birthdate: '1/1/2000',
+                    category_id: senior_cat.id)
+  Candidate.create!(name: 'Jasmine Ham',
                     s_id: 100001,
                     grade: 12,
-                    birthdate: '4/13/1743',
-                    category_id: us_cat.id)
-  Candidate.create!(name: 'Abraham Lincoln',
+                    birthdate: '1/1/2000',
+                    category_id: senior_cat.id)
+  Candidate.create!(name: 'Sharon Park',
                     s_id: 100002,
                     grade: 12,
-                    birthdate: '2/12/1809',
-                    category_id: us_cat.id)
+                    birthdate: '1/1/2000',
+                    category_id: senior_cat.id)
   Candidate.create!(name: 'Josh Chung',
                     s_id: 100003,
                     grade: 12,
