@@ -141,7 +141,7 @@ input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   @include box_sizing;
 }
 
@@ -149,8 +149,8 @@ input {
   height: auto !important;
 }
 input[type=radio], input.radio { 
-  float:left; 
-  clear:none; 
+  float: left; 
+  clear: none; 
   margin: 2px 5px 0 2px; 
 }
 
@@ -172,6 +172,7 @@ input[type=radio], input.radio {
 .students {
   list-style: none;
   margin: 0;
+  font-size: 16px;
   li {
     overflow: auto;
     padding: 4px 0;
@@ -209,9 +210,19 @@ aside {
   body {
     padding-top: 0px;
   }
+
   #logo {
     margin-left: 10px;
   }
+
+  label {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 785px) {
+  aside > section > h1 { text-align: center; }
+  .students { font-size: 25px; }
 }
 
 @media screen and (max-width: 510px) {
@@ -221,8 +232,16 @@ aside {
       display: block;
       text-align: center;
     }
-    nav, ul { 
-      float: center;
+    nav { 
+      ul {
+        float: none;
+        text-align: center;
+        li {
+          float: none;
+          display: inline;
+        }
+      }
+      margin: 0 auto;
     }
   }
 }

@@ -1,13 +1,13 @@
 <% provide(:title, @student.name) %>
 <div class="row">
-  <aside class="span2">
+  <aside class="span3">
     <section>
       <h1>
         <%= @student.name %> | <%= @student.grade %>
       </h1>
     </section>
   </aside>
-  <div class="span10">
+  <div class="span9">
     <% if @votes %>
       <%= render 'vote_record' %>
     <% else %>

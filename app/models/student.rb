@@ -43,7 +43,7 @@ class Student < ActiveRecord::Base
   before_save :create_remember_token
   
   # per_page students shown for every page using will_paginate
-  self.per_page = 50
+  self.per_page = 40
 
   def voting_for?(candidate)
     votes.find_by_cand_id candidate.id
