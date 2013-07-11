@@ -1,3 +1,4 @@
+@import "bootstrap";
 @import "bootstrap-responsive";
 $grayMediumLight: #eaeaea;
 
@@ -234,11 +235,12 @@ aside {
     }
     nav { 
       ul {
-        float: none;
+        float: center;
         text-align: center;
+        margin-left: 0px;
         li {
           float: none;
-          display: inline;
+          margin-left: 0px;
         }
       }
       margin: 0 auto;
