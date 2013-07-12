@@ -1,6 +1,6 @@
 <h3>You've already voted!</h3>
 <p>You submitted your vote 
-    <%= time_ago_in_words(@student.votes.first.created_at) %> ago.
+    <%= time_ago_in_words(@votes.first.created_at) %> ago.
     <br>You voted for:</p>
 <ol class="votes">
   <%= render @votes %>

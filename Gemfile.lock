@@ -208,6 +208,7 @@ DEPENDENCIES
   launchy
   newrelic_rpm
   pg (= 0.12.2)
+  pry
   rails (= 3.2.1)
   rb-fchange (= 0.0.5)
   rb-notifu (= 0.0.4)

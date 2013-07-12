@@ -222,6 +222,10 @@ aside {
   }
 }
 
+@media screen and (min-width: 768px) {
+  .btn-block { width: 50% }
+}
+
 @media screen and (max-width: 785px) {
   aside > section > h1 { text-align: center; }
   .students { font-size: 25px; }

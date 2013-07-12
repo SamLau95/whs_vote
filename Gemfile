@@ -19,6 +19,7 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'spork', '0.9.2'
   gem 'commands'
+  gem 'pry'
 end
 
 group :development do

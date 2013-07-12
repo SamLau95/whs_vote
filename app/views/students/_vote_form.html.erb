@@ -2,14 +2,22 @@
 <%= form_tag votes_path do %>
   <%= hidden_field_tag :student_id, @student.id %>
 
-	<% @categories.each do |category| %>
-		<h4><%= category.name %></h4>
-		<% category.candidates.each do |candidate| %>
-			<%= radio_button_tag category.name, candidate.id %>
-			<%= label_tag "#{category.name}_#{candidate.id}".to_sym, candidate.name %>
-		<% end %>
-	<% end %>
+  <% @categories.each do |category| %>
+    <h4><%= category.name %></h4>
+    <%= hidden_field_tag "#{category.name}", "" %>
+    <div class="btn-group btn-group-vertical btn-block" data-toggle="buttons-radio" name="<%= category.name %>">
+      <% category.candidates.each do |candidate| %>
+        <button type="button" class="btn btn-large" value="<%= candidate.id %>">
+          <%= candidate.name %>
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <br/><br/>
+  
   
   <%= submit_tag "Vote!", class: "btn btn-large btn-primary", 
-  		confirm: "Are you sure? This can't be undone!" %>
+      confirm: "Are you sure? This can't be undone!" %>
 <% end %>
+

@@ -5,7 +5,8 @@ class VotesController < ApplicationController
     @student = Student.find_by_id params[:student_id]
 
     Category.all.each do |category|
-      @student.votes.create! cand_id: params[category.name].to_i if params[category.name]
+      @student.votes.create! cand_id: params[category.name].to_i \
+        if params[category.name] && !params[category.name].empty?
     end
 
     if @student.votes.any?
