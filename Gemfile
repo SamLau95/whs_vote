@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '3.2.1'
 gem 'pg', '0.12.2'
 gem 'rb-readline', '~> 0.4.2'
